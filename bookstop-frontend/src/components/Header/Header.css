@@ -1,0 +1,18 @@
+.header-content{
+    min-height: 75vh;
+    background: linear-gradient(rgba(105, 59, 97, 0.3), rgba(174, 39, 136, 0.5)), url("../../images/tag_image.png") center/cover no-repeat;
+    flex-direction: column;
+}
+.header-title{
+    font-size: 4.2rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.header-text{
+    margin-top: -1.8rem;
+    margin-bottom: 2.8rem;
+    opacity: 0.8;
+    max-width: 770px;
+    font-size: 1.8rem;
+    font-weight: 300;
+}
