@@ -1,5 +1,6 @@
 .about{
     padding: 3rem 0;
+    background-color: #FBEEE6;
 }
 .about-content{
     gap: 4rem;
@@ -8,7 +9,7 @@
     margin: 1rem 0;
 }
 .about-img img{
-    max-width: 520px;
+    max-width: 420px;
 }
 .about-text p{
     margin: 1.8rem 0;

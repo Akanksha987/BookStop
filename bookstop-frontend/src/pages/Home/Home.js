@@ -1,10 +1,14 @@
 import React from 'react';
-import "./Home.css";
+import Header from '../../components/Header/Header';
+import { Outlet } from 'react-router-dom';
+
+
 const Home = () => {
   return (
-    <div>
-      
-    </div>
+    <main>
+        <Header />
+        <Outlet />
+    </main>
   )
 }
 
