@@ -63,7 +63,7 @@ const SignUp = () => {
               <br/>
               <h1>Education Qualification:</h1>
               <Field as="drop-down" name="qualification" className="block">
-                <option value="Engineering">Engineering</option>
+                <option value="Engineering" >Engineering</option>
                 <option value="Agriculture">Agriculture</option>
                 <option value="Computer Science and Engineering">Computer Science and Engineering</option>
                 <option value="Computer Application and IT">Computer Application and IT</option>
