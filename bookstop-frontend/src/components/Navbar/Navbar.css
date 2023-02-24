@@ -1,25 +1,23 @@
-.navbar{
+/* parent divison for navbar */
+.navbar_main{
     background-color: #FBEEE6;
-    padding: 1.8rem 0;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px; */
 }
-.logo{
-    height: 100%;
-    width: 100%;
-}
-.navbar-brand{
-    width: 90px;
-}
-.navbar-brand span{
-    margin-left: 2rem;
-}
-.brand-and-toggler{
-    width: 100%;
-}
+
+
 .navbar-content{
     display: flex;
     width: 100%;
 }
+
+/* Logo Styling */
+.logo{
+    height: 50%;
+    width: 80%;
+}
+
+
+/* Toogle Styling */
 .navbar-toggler-btn{
     transition: var(--transition);
     z-index: 11;
@@ -40,9 +38,100 @@
 .show-navbar-collapse{
     transform: translateX(0);
 }
-.nav-item{
-    margin-bottom: 1.4rem;
+
+/* Navbar List styling */
+.floating-nav{
+    height: 20vh;
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: start;
 }
+
+.navbar-nav{
+        display: flex;
+        width: 80%;
+        justify-content: space-evenly;
+        
+}
+
+
+/* Navbar content list hovering styling */
+
+.nav-item{
+    /* margin-bottom: 1.4rem; */
+    padding-left: 3vh;
+    padding-right: 3vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh ;
+}
+
+.nav-sell{
+    /* margin-bottom: 1.4rem; */
+    padding-left: 3vh;
+    padding-right: 3vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh ;
+    border-radius: 20vh;
+    border: solid black 2px;
+
+}
+
+/* Sell butoon styling */
+#sell-button{
+    background-color: black;
+    color: white;
+    padding-left: 3vh;
+    padding-right: 3vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh ;
+    border-radius: 20vh;
+}
+
+/* Hover Styling settings for the navbar contents */
+
+#sell-button:hover{
+    background-color: #FBEEE6;
+    border: solid black 2px;
+    text-decoration: underline;
+}
+.sell-link:hover{
+    color: black;
+}
+
+.nav-item:hover{
+    border: solid black 2px;
+    border-radius: 20vh;
+}
+
+#image-div{
+    height: 20vh;
+}
+
+
+/* .nav-link:hover{
+    text-decoration: underline;
+} */
+
+/* .navbar-brand{
+    width: 90px;    
+} */
+
+/* .navbar-brand span{
+    margin-left: 2rem;
+} */
+
+/* .brand-and-toggler{
+    width: 100%;
+} */
+
+.sell-link{
+    color: white;
+    font-size: 1.8rem;
+}
+
+
+
 .nav-link{
     transition: var(--transition);
     text-transform: uppercase;
@@ -51,10 +140,9 @@
     font-weight: 600;
     letter-spacing: 1px;
 }
-.nav-link:hover{
-    color: var(--purple-color);
-}
 
+
+/* Responsive Styling */
 @media screen and (min-width: 992px){
     .navbar-collapse{
         position: relative;
@@ -80,5 +168,7 @@
     }
     .navbar-nav{
         display: flex;
+        width: 80%;
+        justify-content: space-evenly;
     }
 }
