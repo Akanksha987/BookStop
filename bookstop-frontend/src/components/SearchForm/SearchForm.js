@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useGlobalContext } from "../../context.";
+import { useGlobalContext } from "../../context";
 import "./SearchForm.css";
 
 const SearchForm = () => {
@@ -29,12 +29,14 @@ const SearchForm = () => {
         <div className="search-form-content">
           <form className="search-form" onSubmit={handleSubmit}>
             <div className="search-form-elem flex flex-sb bg-white">
+              {/* Input field of search bar */}
               <input
                 type="text"
                 className="form-control"
                 placeholder="Search your book..."
                 ref={searchText}
               />
+              {/* Search icon button */}
               <button
                 type="submit"
                 className="flex flex-c"

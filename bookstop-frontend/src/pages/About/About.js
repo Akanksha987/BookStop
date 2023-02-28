@@ -6,10 +6,6 @@ const About = () => {
   return (
     <section className="about">
       <div className="container">
-        <div className="section-title">
-          <h2>About</h2>
-        </div>
-
         <div className="about-content grid">
           <div className="about-img">
             <img src={aboutImg} alt="" />

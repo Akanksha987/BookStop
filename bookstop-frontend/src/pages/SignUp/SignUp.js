@@ -7,7 +7,7 @@ const SignUp = () => {
     username:'',
     password:'',
     email:'',
-    qualification:'B.tech',
+    qualification:'',
   }
   const validationSchema=Yup.object().shape({
     username:Yup.string()
@@ -62,7 +62,7 @@ const SignUp = () => {
               <ErrorMessage name='confirmPassword' component="div"/>
               <br/>
               <h1>Education Qualification:</h1>
-              <Field as="drop-down" name="qualification" className="block">
+              <Field as="string" name="qualification" className="block">
                 <option value="Engineering" >Engineering</option>
                 <option value="Agriculture">Agriculture</option>
                 <option value="Computer Science and Engineering">Computer Science and Engineering</option>

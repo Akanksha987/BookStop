@@ -1,23 +1,18 @@
 /* Main divison of the content page */
 .header{
     width: 100%;
+    background-color: #FBEEE6;
 }
-
+.about{
+    margin-top: 1.5rem;
+}
 
 .header-content{
-    /* min-height: 77vh; */
     background-color: #FBEEE6;
-    /* background: linear-gradient(rgba(105, 59, 97, 0.3), rgba(174, 39, 136, 0.5)), url("../../images/tag_image.png") center/cover no-repeat; */
     flex-direction: column;
 }
-/* .header-title{
-    font-size: 2.4rem;
-    text-transform: uppercase;
-    font-weight: 500;
-} */
 .header-text{
     margin-top: -1.8rem;
-    /* margin-bottom: 2.8rem; */
     opacity: 0.8;
     max-width: 770px;
     font-size: 1.8rem;

@@ -1,6 +1,6 @@
 import React from "react";
+import About from "../../pages/About/About";
 import Navbar from "../Navbar/Navbar";
-import SearchForm from "../SearchForm/SearchForm";
 import "./Header.css";
 
 const Header = () => {
@@ -8,13 +8,13 @@ const Header = () => {
     <header className="header">
       <Navbar />
       <div className="header-content flex flex-c text-center text-black">
-        {/* <h2 className="header-title">Search Book Of Your Need.</h2>
-        <br /> */}
         <p className="header-text">
-          "Welcome to the "Bookstop" - Here you can find books and also conatct
-          your seniors"
+          "Welcome to "Bookstop" - Here you can find books and also contact your
+          seniors"
         </p>
-        <SearchForm />
+      </div>
+      <div className="about">
+        <About />
       </div>
     </header>
   );

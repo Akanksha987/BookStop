@@ -4,12 +4,18 @@ import "./Navbar.css";
 import logoImg from "../../images/B.png";
 import books from "../../images/cover.png";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-// import { FaAdn, FaBorderAll } from 'react-icons/fa';
-
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const handleNavbar = () => setToggleMenu(!toggleMenu);
-
+  const handleClick = (e) => {
+    let buttons = document.getElementsByClassName("buttons");
+    for (let i = 0; i < buttons.length; i++) {
+      if (buttons[i].hasAttribute("id", "active")) {
+        buttons[i].removeAttribute("id", "active");
+      }
+    }
+    e.target.setAttribute("id", "active")
+  };
   return (
     // Main divison of navabar
     <nav className="navbar_main" id="navbar">
@@ -44,31 +50,36 @@ const Navbar = () => {
           }
         >
           <div className="floating-nav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link to="book" className="nav-link">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="about" className="nav-link">
-                  about
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="cart" className="nav-link">
-                  cart
-                </Link>
-              </li>
-              <li>
-                <button id="sell-button">
-                  {/* class="fas fa-border-all" */}
-                  <Link to="" className="sell-link">
-                    Sell Book
-                  </Link>
-                </button>
-              </li>
-            </ul>
+            <Link to="/">
+              <button
+                id="active"
+                onClick={handleClick}
+                className="navigate-around-buttons buttons"
+              >
+                Home
+              </button>
+            </Link>
+            <Link to="/book">
+              <button
+                onClick={handleClick}
+                className="navigate-around-buttons buttons"
+              >
+                Books
+              </button>
+            </Link>
+            <Link to="/cart">
+              <button
+                onClick={handleClick}
+                className="navigate-around-buttons buttons"
+              >
+                Cart
+              </button>
+            </Link>
+            <Link to="/sell">
+              <button className="navigate-around-buttons buttons">
+                List Book
+              </button>
+            </Link>
           </div>
 
           {/* Dision for image of books */}

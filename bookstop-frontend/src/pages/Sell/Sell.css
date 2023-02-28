@@ -1,0 +1,10 @@
+.photograph {
+  height: 20vh;
+  width: 50vh;
+}
+.box {
+  display: flex;
+}
+.fun {
+  display: inline;
+}
