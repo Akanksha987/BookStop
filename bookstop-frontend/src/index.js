@@ -9,6 +9,8 @@ import BookList from "./components/BookList/BookList";
 import BookDetails from "./components/BookDetails/BookDetails";
 import Cart from "./pages/Cart/Cart";
 import Sell from "./pages/Sell/Sell";
+import SignUp from "./pages/SignUp/SignUp";
+import Login from "./pages/SignUp/Login";
 import NotFound from "./pages/not found/NotFound";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -22,7 +24,9 @@ root.render(
         <Route path="/book/:id" element={<BookDetails />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/sell" element={<Sell />} />
-        <Route path="*" element={<NotFound/>} />
+        <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </AppProvider>

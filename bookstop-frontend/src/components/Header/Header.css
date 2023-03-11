@@ -1,20 +1,19 @@
 /* Main divison of the content page */
-.header{
-    width: 100%;
-    background-color: #FBEEE6;
+.header {
+  width: 100%;
+  background-color: #fbeee6;
 }
-.about{
-    margin-top: 1.5rem;
+.about {
+  margin-top: 1.5rem;
 }
-
-.header-content{
-    background-color: #FBEEE6;
-    flex-direction: column;
+.header-content {
+  background-color: #fbeee6;
+  flex-direction: column;
 }
-.header-text{
-    margin-top: -1.8rem;
-    opacity: 0.8;
-    max-width: 770px;
-    font-size: 1.8rem;
-    font-weight: 300;
+.header-text {
+  margin-top: -0.8rem;
+  opacity: 0.8;
+  max-width: 770px;
+  font-size: 1.8rem;
+  font-weight: 300;
 }

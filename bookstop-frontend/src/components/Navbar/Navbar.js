@@ -14,7 +14,7 @@ const Navbar = () => {
         buttons[i].removeAttribute("id", "active");
       }
     }
-    e.target.setAttribute("id", "active")
+    e.target.setAttribute("id", "active");
   };
   return (
     // Main divison of navabar
@@ -78,6 +78,14 @@ const Navbar = () => {
             <Link to="/sell">
               <button className="navigate-around-buttons buttons">
                 List Book
+              </button>
+            </Link>
+            <Link to="/SignUp">
+              <button
+                onClick={handleClick}
+                className="navigate-around-buttons buttons"
+              >
+                SignUp
               </button>
             </Link>
           </div>

@@ -1,36 +1,52 @@
-require("dotenv").config();
-
 const express = require("express");
-const mongoose = require("mongoose");
-
 const app = express();
+const mongoose = require("mongoose");
+app.use(express.json());
 
-app.get("/", (req, resp) => {
-  resp.json({ mssg: "Get" });
-});
-
-app.post("/", (req, resp) => {
-  resp.json({ mssg: "Post" });
-});
-
-app.patch("/:id", (req, resp) => {
-  resp.json({ mssg: "Patch" });
-});
-
-app.delete("/:id", (req, resp) => {
-  resp.json({ mssg: "Delete" });
-});
-
-app.listen(process.env.PORT, () => {
-  console.log("Port 5000");
-});
 mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    app.listen(process.env.PORT, () => {
-      console.log("Listening on port", process.env.PORT);
-    });
+  .connect("mongodb://localhost:27017/pracDatabase", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    family: 4,
   })
-  .catch((error) => {
-    console.log(error);
-  });
+  .then(() => {
+    console.log("Connect to the database");
+  })
+  .catch((e) => console.log(e));
+
+const newUser = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  password: String
+});
+
+const FirstUser = new newUser
+// require("./index")
+// const USser=mongoose.model("")
+// mongoose.set("strictQuery", false);
+// app.post("/post", async (req, res) => {
+//   console.log(req.body);
+//   const { name } = req.body;
+
+//   try {
+//     if (name == "Akanksha") {
+//       res.send({ status: "ok" });
+//     } else {
+//       res.send({ status: "User not found" });
+//     }
+//   } catch (error) {
+//     res.send({ status: "error" });
+//   }
+// });
+// require("./index");
+
+// app.post("/register",async(req,res)=>{
+//   const {name,email,password,education}=req.body;
+
+// });
+
+app.listen(8000, () => {
+  console.log("Listening on Port:8000");
+});

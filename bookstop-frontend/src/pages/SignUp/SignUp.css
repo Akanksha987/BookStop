@@ -1,0 +1,47 @@
+.logo-image {
+  height: 30%;
+  width: 25%;
+}
+.sign-content {
+  background-color: #fbeee6;
+  padding: 3%;
+}
+#images {
+  display: flex;
+}
+.cover-image {
+  height: 40%;
+  width: 35%;
+  margin-left: 35%;
+}
+#box {
+  width: 70%;
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+}
+.input-field {
+  background-color: #fff;
+  border: 2px solid black;
+  height: 10%;
+}
+select {
+  border: 2px solid black;
+  height: 10%;
+}
+#black {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+}
+@media screen and (max-width: 992px) {
+  .cover-image {
+    display: none;
+  }
+  .logo-image {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

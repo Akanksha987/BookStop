@@ -6,8 +6,8 @@ import "./BookList.css";
 import SearchForm from "../SearchForm/SearchForm";
 import "../Navbar/Navbar";
 import Navbar from "../Navbar/Navbar";
-
-// https://covers.openlibrary.org/b/id/240727-S.jpg
+import data from "../../Server.json";
+console.log({ data });
 
 const BookList = () => {
   const { books, resultTitle } = useGlobalContext();
@@ -22,7 +22,11 @@ const BookList = () => {
         : coverImg,
     };
   });
-
+  // const filterBooks=books.map(()=>{
+  //   return{
+  //     // id:
+  //   }
+  // })
   return (
     <section className="booklist">
       <div>
@@ -39,35 +43,25 @@ const BookList = () => {
           </div>
           {/* These are the filters of the type of book you need */}
           <div className="filters">
-            <input
-              type="text"
-              placeholder="Author Name.."
-              className="filter-options"
-            />
-            <input
-              type="text"
-              placeholder="Course Name.."
-              className="filter-options"
-            />
-            <input
-              type="number"
-              placeholder="Type the Year..."
-              className="filter-options number"
-            />
-            <input
-              type="number"
-              placeholder="Edition.."
-              className="filter-options number"
-            />
+            <select>
+              <option>{data.posts[5].Books[0].author}</option>
+            </select>
+            <select>
+              <option>{data.posts[5].Books[0]["Course Associated"]}</option>
+            </select>
+            <select>
+              <option>{data.posts[5].Books[0].Year}</option>
+            </select>
+            <select>
+              <option>{data.posts[5].Books[0].edition}</option>
+            </select>
           </div>
         </div>
         <div className="booklist-content grid">
           {/* Indivisual Book element being displayed */}
-          {/* <div id="indivisual-book"> */}
           {booksWithCovers.slice(0, 30).map((item, index) => {
             return <Book id key={index} {...item} />;
           })}
-          {/* </div> */}
         </div>
       </div>
     </section>

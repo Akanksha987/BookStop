@@ -94,3 +94,20 @@
     justify-content: space-evenly;
   }
 }
+@media screen and (max-width: 992px) {
+  #image-div {
+    display: none;
+  }
+  .navbar-toggler-btn {
+    margin-right: 5%;
+  }
+  .navigate-around-buttons {
+    color: #fff;
+  }
+  .floating-nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 45%;
+    margin-left: 5%;
+  }
+}

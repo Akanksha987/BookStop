@@ -1,35 +1,30 @@
 import * as Yup from "yup";
 import "./Sell.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { FaAlignCenter } from "react-icons/fa";
+import Navbar from "../../components/Navbar/Navbar";
 const Sell = () => {
   const initialValues = {
-    name: "",
-    email: "",
-    contact: "",
-    qualification: "",
+    bookname: "",
+    author: "",
+    edition: "",
+    course: "",
     year: "",
     description: "",
     image: null,
   };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string()
+    bookname: Yup.string()
       .min(3, "Name must be at least 3 characters")
       .max(30, "Name must be at most 30 characters")
       .required("Please enter your name"),
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Please enter your email"),
-    contact: Yup.string()
-      .min(10, "Number should not be less than 10 digits")
-      .max(10, "Number should not exceed then 10 digits")
-      .required("Please enter your contact number")
-      .matches(
-        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
-        "Must contain at least 10 character and a special character"
-      ),
-    qualification: Yup.string().required("This field is required"),
+    edition: Yup.number()
+      .positive()
+      .min(4, "Digit should not be less than 4")
+      // .max(4, "Digit should not exceed more than 4")
+      .required("This field is required"),
+    author: Yup.string().required("This field is required"),
+    course: Yup.string().required("This field is required"),
     year: Yup.number()
       .positive()
       .max(6, "Year should not exceed more than 6 years")
@@ -55,83 +50,72 @@ const Sell = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-      className="box"
-    >
-      {({ isSubmitting }) => (
-        <Form className="black">
-          <div className="box">
-            <div className="fun">
-              <h3>Name:</h3>
-              <Field
-                type="text"
-                name="name"
-                placeholder=" Name.."
-                className="block"
-              />
-              <ErrorMessage name="name" component="div" />
-              <br />
-              <h3>Email ID:</h3>
-              <Field
-                type="email"
-                name="email"
-                placeholder="Email.."
-                className="block"
-              />
-              <ErrorMessage name="email" component="div" />
-              <br />
-              <h3>Contact Number:</h3>
-              <Field
-                type="text"
-                name="contact"
-                placeholder="Contact NUmber.. "
-                className="block"
-              />
-              <ErrorMessage name="contact" component="div" />
-              <br />
-              <h3>Qualification:</h3>
-              <Field
-                type="text"
-                name="qualification"
-                placeholder="Degree Name.."
-                className="block"
-              />
-              <ErrorMessage name="qualification" component="div" />
-              <br />
-              <h3>Year:</h3>
-              <Field
-                type="number"
-                name="year"
-                placeholder="Year.."
-                className="block"
-              />
-              <ErrorMessage name="year" component="div" />
-              <br />
-              <h3>Description(optional)</h3>
-              <Field
-                type="text"
-                name="desription"
-                placeholder=""
-                className="block"
-              />
-              <ErrorMessage name="description" component="div" />
-              <br />
-              <button type="submit" disabled={isSubmitting} id="submit">
-                Continue
+    <div className="content">
+      <div>
+        <Navbar />
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+          className="box"
+        >
+          {({ isSubmitting }) => (
+            <Form className="black">
+              <div className="box">
+                <div className="fun">
+                  <h3>Book Name:</h3>
+                  <Field type="text" name="bookname" className="block" />
+                  <ErrorMessage name="bookname" component="div" />
+                  <br />
+                  <h3>Edition:</h3>
+                  <Field type="number" name="edition" className="block" />
+                  <ErrorMessage name="edition" component="div" />
+                  <br />
+                  <h3>Author:</h3>
+                  <Field type="text" name="author" className="block" />
+                  <ErrorMessage name="author" component="div" />
+                  <br />
+                  <h3>Course Associated:</h3>
+                  <Field
+                    type="text"
+                    name="course"
+                    className="block"
+                    placeholder=""
+                  />
+                  <ErrorMessage name="course" component="div" />
+                  <br />
+                  <h3>Year:</h3>
+                  <Field type="number" name="year" className="block" />
+                  <ErrorMessage name="year" component="div" />
+                  <br />
+                  <h3>Description(optional)</h3>
+                  <Field
+                    type="text"
+                    name="desription"
+                    placeholder="Please type the description of the book"
+                    className="description block"
+                  />
+                  <ErrorMessage name="description" component="div" />
+                  <br />
+                </div>
+                <div id="image">
+                  <h3>Photograph</h3>
+                  <Field type="file" name="image" className="photograph" />
+                </div>
+              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                id="submit"
+                className="submit_button"
+              >
+                Upload
               </button>
-            </div>
-            <div>
-              <h3>Photograph</h3>
-              <Field type="file" name="image" className="photograph" />
-              {/* <ErrorMessage name="image" component="img" /> */}
-            </div>
-          </div>
-        </Form>
-      )}
-    </Formik>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </div>
   );
 };
 

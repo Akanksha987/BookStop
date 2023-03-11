@@ -25,29 +25,21 @@ const SearchForm = () => {
 
   return (
     <div className="search-form">
-      <div className="container">
-        <div className="search-form-content">
-          <form className="search-form" onSubmit={handleSubmit}>
-            <div className="search-form-elem flex flex-sb bg-white">
-              {/* Input field of search bar */}
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search your book..."
-                ref={searchText}
-              />
-              {/* Search icon button */}
-              <button
-                type="submit"
-                className="flex flex-c"
-                onClick={handleSubmit}
-              >
-                <FaSearch className="text-black" size={25} />
-              </button>
-            </div>
-          </form>
+      <form className="search-form" onSubmit={handleSubmit}>
+        <div className="search-form-elem flex flex-sb">
+          {/* Input field of search bar */}
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search your book..."
+            ref={searchText}
+          />
+          {/* Search icon button */}
+          <button type="submit" className="flex flex-c" onClick={handleSubmit}>
+            <FaSearch className="text-black" size={25} />
+          </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

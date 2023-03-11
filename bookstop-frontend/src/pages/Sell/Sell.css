@@ -1,10 +1,101 @@
-.photograph {
-  height: 20vh;
-  width: 50vh;
-}
-.box {
+/* MAIN DIVISON CONTAINING EVERYTHING BELOW NAVBAR */
+.black {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
 }
-.fun {
-  display: inline;
+
+/* divison containing form wihtout the submit button */
+.box {
+  width: 70%;
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+  border: solid black 2px;
+  flex-direction: row;
+}
+
+.content {
+  background-color: #fbeee6;
+}
+
+#form_content {
+  width: 70%;
+}
+
+/* Class for all the user date entry feilds */
+.block {
+  background-color: white;
+  width: 20vw;
+  border-radius: 1vh;
+  box-shadow: 1px 2px 2px 0px grey;
+  padding: 1vh;
+}
+
+/* Description Section styling */
+.description {
+  width: 20vw;
+  height: 10vh;
+  background-color: white;
+  margin-bottom: 15px;
+  box-shadow: 1px 2px 2px 0px grey;
+  border-radius: 1vh;
+  display: flex;
+  flex-direction: row;
+}
+
+/* Photograph section */
+
+.photograph {
+  height: 50vh;
+  width: 50vh;
+  background-image: url(../../images/addimage.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  align-content: center;
+  opacity: 0.5;
+  box-shadow: 2px 2px 2px 2px grey;
+  border-radius: 1vh;
+}
+
+/* Upload Button Styling */
+
+.submit_button {
+  background-color: black;
+  padding: 2vh;
+  margin-top: 5vh;
+  color: white;
+  font-size: 2rem;
+  width: 15vh;
+  border-radius: 6vh;
+}
+
+.submit_button:hover {
+  background-color: #fbeee6;
+  color: black;
+  border: solid black 2px;
+  font-weight: bolder;
+}
+
+/* responsive styling */
+@media screen and (max-width: 992px) {
+  .box {
+    flex-direction: column;
+    text-align: center;
+  }
+  .photograph {
+    height: 20vh;
+    width: 40vw;
+    margin-bottom: 7%;
+  }
+  .block {
+    width: 75%;
+    align-items: center;
+  }
+  .description {
+    flex-direction: column;
+    margin-left: 14%;
+  }
 }
