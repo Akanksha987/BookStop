@@ -7,35 +7,56 @@ import { useNavigate } from "react-router-dom";
 
 import "./SignUp.css";
 
+const validationSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Please enter your email"),
+  password: Yup.string()
+    .min(8)
+    .required("Please enter your password")
+    .matches(
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+      "Must contain at least 8 character and a special character"
+    ),
+});
+
+const initialValues = {
+  email: "",
+  password: "",
+};
 const Login = () => {
-  const initialValues = {
-    email: "",
-    password: "",
-  };
   const navigate = useNavigate();
 
-  const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Please enter your email"),
-    password: Yup.string()
-      .min(8)
-      .required("Please enter your password")
-      .matches(
-        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
-        "Must contain at least 8 character and a special character"
-      ),
-  });
+  const handleLogin = async (
+    values,
+    { setSubmitting, setErrors, setStatus, history }
+  ) => {
+    try {
+      const response = await fetch("http://localhost:3000/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
 
-  const onSubmit = (values, { setSubmitting }) => {
-    setTimeout(() => {
-      console.log(values);
-      sessionStorage.setItem("name", values.name);
+      const data = await response.json();
 
-      setSubmitting(false);
-      window.open("http://localhost:3000/", "_self");
-    }, 1000);
+      if (response.ok) {
+        console.log("User authenticated");
+        navigate(`/`);
+      } else {
+        console.log(data.error);
+        setErrors({ password: data.error });
+      }
+    } catch (err) {
+      console.log(err);
+      setErrors({ password: "Something went wrong. Please try again." });
+    }
+
+    setSubmitting(false);
   };
+
   return (
     <div className="sign-content">
       <div id="images">
@@ -46,7 +67,7 @@ const Login = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={onSubmit}
+        onSubmit={handleLogin}
       >
         {({ isSubmitting }) => (
           <Form id="black">

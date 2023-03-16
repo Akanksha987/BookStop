@@ -24,8 +24,8 @@ root.render(
         <Route path="/book/:id" element={<BookDetails />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/sell" element={<Sell />} />
-        <Route path="/SignUp" element={<SignUp />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path="/users/signup" element={<SignUp />} />
+        <Route path="/users/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

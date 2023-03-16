@@ -80,7 +80,7 @@ const Navbar = () => {
                 List Book
               </button>
             </Link>
-            <Link to="/SignUp">
+            <Link to="/users/signup">
               <button
                 onClick={handleClick}
                 className="navigate-around-buttons buttons"

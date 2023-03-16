@@ -39,15 +39,15 @@ const Sell = () => {
       .test("size", "File size is too big", (value) => {}),
   });
 
-  const onSubmit = (values, { setSubmitting }) => {
-    setTimeout(() => {
-      console.log(values);
-      sessionStorage.setItem("name", values.name);
+  // const onSubmit = (values, { setSubmitting }) => {
+  //   setTimeout(() => {
+  //     console.log(values);
+  //     sessionStorage.setItem("name", values.name);
 
-      setSubmitting(false);
-      window.open("http://localhost:3000/", "_self");
-    }, 1000);
-  };
+  //     setSubmitting(false);
+  //     window.open("http://localhost:3000/", "_self");
+  //   }, 1000);
+  // };
 
   return (
     <div className="content">
@@ -56,7 +56,12 @@ const Sell = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={onSubmit}
+          // onSubmit={onSubmit}
+          onSubmit={(values, { setSubmitting }) => {
+            // add authentication logic here
+            console.log(values);
+            setSubmitting(false);
+          }}
           className="box"
         >
           {({ isSubmitting }) => (
