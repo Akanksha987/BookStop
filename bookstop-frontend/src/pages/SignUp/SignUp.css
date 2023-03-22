@@ -1,18 +1,39 @@
 .logo-image {
-  height: 30%;
-  width: 25%;
+  height: 25%;
+  width: 20%;
 }
 .sign-content {
   background-color: #fbeee6;
-  padding: 3%;
+  padding: 2%;
+  height: 100%;
+  width: 100%;
 }
 #images {
   display: flex;
+}
+.button {
+  background-color: black;
+  padding: 2vh;
+  margin-top: 5vh;
+  color: white;
+  font-size: 2rem;
+  width: 15vh;
+  border-radius: 6vh;
+}
+.button:hover {
+  background-color: #fbeee6;
+  color: black;
+  border: solid black 2px;
+  font-weight: bolder;
 }
 .cover-image {
   height: 40%;
   width: 35%;
   margin-left: 35%;
+}
+.link {
+  color: blue;
+  text-decoration: underline;
 }
 #box {
   width: 70%;
@@ -20,14 +41,17 @@
   align-content: center;
   justify-content: space-evenly;
 }
+#box {
+  display: inline;
+}
 .input-field {
   background-color: #fff;
-  border: 2px solid black;
-  height: 10%;
+  border: 3px solid black;
+  height: 25%;
 }
-select {
-  border: 2px solid black;
-  height: 10%;
+label {
+  margin: 1%;
+  /* position: absolute; */
 }
 #black {
   display: flex;

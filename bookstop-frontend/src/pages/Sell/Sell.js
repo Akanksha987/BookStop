@@ -105,13 +105,13 @@ const Sell = () => {
                 </div>
                 <div id="image">
                   <h3>Photograph</h3>
-                  <Field type="file" name="image" className="photograph" />
+                  <div className="photograph" onClick={() => document.getElementById("imageHere").click()}></div>
+                  <Field id="imageHere" type="file" name="image" accept="image/*"/>
                 </div>
               </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                id="submit"
                 className="submit_button"
               >
                 Upload

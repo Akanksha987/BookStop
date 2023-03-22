@@ -1,117 +1,96 @@
-import * as Yup from "yup";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import React, { useState } from "react";
+import validation from "./validation";
 import logoImg from "../../images/B.png";
 import books from "../../images/cover.png";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import axios from "axios";
 import "./SignUp.css";
-
-const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Invalid email address")
-    .required("Please enter your email"),
-  password: Yup.string()
-    .min(8)
-    .required("Please enter your password")
-    .matches(
-      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
-      "Must contain at least 8 character and a special character"
-    ),
-});
-
-const initialValues = {
-  email: "",
-  password: "",
-};
 const Login = () => {
+  const history = useNavigate();
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({});
+
   const navigate = useNavigate();
-
-  const handleLogin = async (
-    values,
-    { setSubmitting, setErrors, setStatus, history }
-  ) => {
-    try {
-      const response = await fetch("http://localhost:3000/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log("User authenticated");
-        navigate(`/`);
-      } else {
-        console.log(data.error);
-        setErrors({ password: data.error });
-      }
-    } catch (err) {
-      console.log(err);
-      setErrors({ password: "Something went wrong. Please try again." });
-    }
-
-    setSubmitting(false);
+  const handleChange = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
+    });
+    console.log(values);
   };
+  const sendRequest = async () => {
+    const res = await axios
+      .post("http://localhost:8000/api/login", {
+        email: values.email,
+        password: values.password,
+      })
+      .catch((err) => console.log(err));
 
+    const data = await res.data;
+    return data;
+  };
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setErrors(validation(values));
+    // send http server
+    sendRequest().then(() => {
+      history("/");
+    });
+  };
   return (
     <div className="sign-content">
       <div id="images">
         <img src={logoImg} alt="logo" className="logo-image" />
         <img src={books} alt="cover" className="cover-image" />
       </div>
-
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleLogin}
-      >
-        {({ isSubmitting }) => (
-          <Form id="black">
-            <div id="box">
-              <div>
-                <button
-                  type="button"
-                  className="flex flex-c"
-                  onClick={() => navigate("/")}
-                >
-                  <FaArrowLeft size={22} />
-                  <span className="fs-18 fw-6">Login</span>
-                </button>
-                <h3>Email:</h3>
-                <Field
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  className="input-field"
-                />
-                <ErrorMessage name="email" component="div" />
-                <br />
-                <h3>Password:</h3>
-                <Field
-                  type="password"
-                  name="password"
-                  placeholder="Password "
-                  className="input-field"
-                />
-                <ErrorMessage name="password" component="div" />
-                <br />
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  id="submit"
-                  className="submit_button"
-                >
-                  Login
-                </button>
-              </div>
-            </div>
-          </Form>
-        )}
-      </Formik>
+      <div id="box">
+        <form id="black">
+          <button
+            type="button"
+            className="flex flex-c"
+            onClick={() => navigate("/")}
+          >
+            <FaArrowLeft size={22} />
+            <span className="fs-18 fw-6">Login</span>
+          </button>
+          <label>
+            Email
+            <input
+              className="input-field"
+              type="email"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+            />
+            {errors.email && <p>{errors.email}</p>}
+          </label>
+          <label>
+            Password
+            <input
+              className="input-field"
+              type="password"
+              name="password"
+              value={values.password}
+              onChange={handleChange}
+            />
+            {errors.password && <p>{errors.password}</p>}
+          </label>
+          <button onClick={handleFormSubmit} className="button">
+            Login
+          </button>
+          <p>
+            Doesn't have an account? Then{" "}
+            <Link to="/users/signup" className="link">
+              SignUp
+            </Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };

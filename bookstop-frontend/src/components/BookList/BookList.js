@@ -6,12 +6,10 @@ import "./BookList.css";
 import SearchForm from "../SearchForm/SearchForm";
 import "../Navbar/Navbar";
 import Navbar from "../Navbar/Navbar";
-import data from "../../Server.json";
-console.log({ data });
 
 const BookList = () => {
   const { books, resultTitle } = useGlobalContext();
-  const [cartBooks, setCartBooks] = useState([]);
+  // const [cartBooks, setCartBooks] = useState([]);
   const booksWithCovers = books.map((singleBook) => {
     return {
       ...singleBook,
@@ -22,11 +20,6 @@ const BookList = () => {
         : coverImg,
     };
   });
-  // const filterBooks=books.map(()=>{
-  //   return{
-  //     // id:
-  //   }
-  // })
   return (
     <section className="booklist">
       <div>
@@ -44,16 +37,16 @@ const BookList = () => {
           {/* These are the filters of the type of book you need */}
           <div className="filters">
             <select>
-              <option>{data.posts[5].Books[0].author}</option>
+              <option>Opt 1</option>
             </select>
             <select>
-              <option>{data.posts[5].Books[0]["Course Associated"]}</option>
+              <option>Opt 2</option>
             </select>
             <select>
-              <option>{data.posts[5].Books[0].Year}</option>
+              <option>Opt 3</option>
             </select>
             <select>
-              <option>{data.posts[5].Books[0].edition}</option>
+              <option>Opt 4</option>
             </select>
           </div>
         </div>

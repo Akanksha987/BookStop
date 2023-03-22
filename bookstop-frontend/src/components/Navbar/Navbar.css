@@ -53,7 +53,7 @@
   border: 2px solid black;
 }
 
-.active-class-button {
+#active {
   width: 8vw;
   font-size: large;
   margin-top: 50pt;
