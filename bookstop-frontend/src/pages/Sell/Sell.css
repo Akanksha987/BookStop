@@ -48,6 +48,9 @@
 
 /* Photograph section */
 
+input[type=file]{
+  display: none;
+}
 .photograph {
   height: 50vh;
   width: 50vh;
@@ -58,6 +61,7 @@
   opacity: 0.5;
   box-shadow: 2px 2px 2px 2px grey;
   border-radius: 1vh;
+  cursor: pointer;
 }
 
 /* Upload Button Styling */

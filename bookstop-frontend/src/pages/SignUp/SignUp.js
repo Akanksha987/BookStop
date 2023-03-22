@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import validation from "./validation";
 import logoImg from "../../images/B.png";
 import books from "../../images/cover.png";
-import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import "./SignUp.css";
 const SignUp = () => {
-  const navigate = useNavigate();
-  const [inputs, setInputs] = useState({
+  const history = useNavigate();
+  const [values, setValues] = useState({
     name: "",
     email: "",
     password: "",
@@ -15,16 +17,46 @@ const SignUp = () => {
     phone: "",
   });
 
-  const handleSubmit = {};
-  const handleChange = {};
+  const [errors, setErrors] = useState({});
+
+  const navigate = useNavigate();
+  const handleChange = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
+    });
+    console.log(values);
+  };
+  const sendRequest = async () => {
+    const res = await axios
+      .post("http://localhost:8000/api/signup", {
+        name: values.name,
+        email: values.email,
+        password: values.password,
+        confirmPassword: values.confirmPassword,
+        phone: values.phone,
+      })
+      .catch((err) => console.log(err));
+
+    const data = await res.data;
+    return data;
+  };
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setErrors(validation(values));
+    // send http request
+    sendRequest().then(() => {
+      history("/users/login");
+    });
+  };
   return (
     <div className="sign-content">
       <div id="images">
         <img src={logoImg} alt="logo" className="logo-image" />
         <img src={books} alt="cover" className="cover-image" />
       </div>
-      <form id="black" onSubmit={handleSubmit}>
-        <div id="box">
+      <div id="box">
+        <form id="black">
           <button
             type="button"
             className="flex flex-c"
@@ -33,155 +65,72 @@ const SignUp = () => {
             <FaArrowLeft size={22} />
             <span className="fs-18 fw-6">Sign In</span>
           </button>
-          <h3>Name:</h3>
           <label>
+            Name
             <input
-              placeholder="Name"
-              values={inputs.name}
+              className="input-field"
               type="text"
+              name="name"
+              value={values.name}
               onChange={handleChange}
             />
+            {errors.name && <p>{errors.name}</p>}
           </label>
-          <br />
-          <h3>Contact Number:</h3>
           <label>
+            Email
             <input
-              placeholder="Contact Number"
-              values={inputs.phone}
-              type="number"
-              onChange={handleChange}
-            />
-          </label>
-          <br />
-          <h3>Password:</h3>
-          <label>
-            <input
-              placeholder="Password"
-              values={inputs.password}
-              type="password"
-              onChange={handleChange}
-            />
-          </label>
-          <br />
-          <h3>Confirm Password:</h3>
-          <label>
-            <input
-              placeholder="Confirm Password"
-              values={inputs.confirmPassword}
-              type="password"
-              onChange={handleChange}
-            />
-          </label>
-          <br />
-          <h3>Email:</h3>
-          <label>
-            <input
-              placeholder="Email"
-              values={inputs.email}
+              className="input-field"
               type="email"
+              name="email"
+              value={values.email}
               onChange={handleChange}
             />
+            {errors.email && <p>{errors.email}</p>}
           </label>
-          <br />
-          <h3>Education Qualification:</h3>
-          <select>
-            <option value=""></option>
-            <option value="Engineering">Engineering</option>
-            <option value="Agriculture">Agriculture</option>
-            <option value="Computer Science and Engineering">
-              Computer Science and Engineering
-            </option>
-            <option value="Computer Application and IT">
-              Computer Application and IT
-            </option>
-            <option value="Sciences">Sciences</option>
-            <option value="Food Technology">Food Technology</option>
-            <option value="Forensic Science">Forensic Science</option>
-            <option value="Biotechnology">Biotechnology</option>
-            <option value="Botany">Botany</option>
-            <option value="Microbiology">Microbiology</option>
-            <option value="Physics">Physics</option>
-            <option value="Chemistry">Chemistry</option>
-            <option value="Zoology">Zoology</option>
-            <option value="Mathematics and Statics">
-              Mathematics and Statics
-            </option>
-            <option value="Libraray Science">Libraray Science</option>
-            <option value="Nutrition and Dietetics">
-              Nutrition and Dietetics
-            </option>
-            <option value="Management">Management</option>
-            <option value="Commerce">Commerce</option>
-            <option value="Economics">Economics</option>
-            <option value="Hotel Management and Tourism">
-              Hotel Management and Tourism
-            </option>
-            <option value="Architecture">Architecture</option>
-            <option value="Planning">Planning</option>
-            <option value="Design">Design</option>
-            <option value="Fashion Design">Fashion Design</option>
-            <option value="Product and Industrial Design">
-              Product and Industrial Design
-            </option>
-            <option value="Multimedia and Animation Design">
-              Multimedia and Animation Design
-            </option>
-            <option value="English and Foriegn Languages">
-              English and Foriegn Languages
-            </option>
-            <option value="Interior and Furniture Design">
-              Interior and Furniture Design
-            </option>
-            <option value="Interaction Design">Interaction Design</option>
-            <option value="Journalism and Film Production">
-              Journalism and Film Production
-            </option>
-            <option value="Performing Arts">Performing Arts</option>
-            <option value="Fine Arts">Fine Arts</option>
-            <option value="Law">Law</option>
-            <option value="Pharmaceutical Sciences">
-              Pharmaceutical Sciences
-            </option>
-            <option value="Applied Medical Sciences">
-              Applied Medical Sciences
-            </option>
-            <option value="Physiotherapy">Physiotherapy</option>
-            <option value="Ayurvedic Pharmaceutical Sciences">
-              Ayurvedic Pharmaceutical Sciences
-            </option>
-            <option value="MLT/Paramedical Sciences">
-              MLT/Paramedical Sciences
-            </option>
-            <option value="Arts (Humanities)">Arts (Humanities)</option>
-            <option value="History">History</option>
-            <option value="Psychology">Psychology</option>
-            <option value="Sociology">Sociology</option>
-            <option value="Political Science">Political Science</option>
-            <option value="Public Administration">Public Administration</option>
-            <option value="Geography">Geography</option>
-            <option value="Punjabi">Punjabi</option>
-            <option value="Education">Education</option>
-            <option value="Physical Education">Physical Education</option>
-          </select>
-          <button type="submit" id="submit" className="submit_button">
+          <label>
+            Password
+            <input
+              className="input-field"
+              type="password"
+              name="password"
+              value={values.password}
+              onChange={handleChange}
+            />
+            {errors.password && <p>{errors.password}</p>}
+          </label>
+          <label>
+            Confirm Password
+            <input
+              className="input-field"
+              type="password"
+              name="confirmPassword"
+              value={values.confirmPassword}
+              onChange={handleChange}
+            />
+            {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+          </label>
+          <label>
+            Contact Number
+            <input
+              className="input-field"
+              type="number"
+              name="phone"
+              value={values.phone}
+              onChange={handleChange}
+            />
+            {errors.phone && <p>{errors.phone}</p>}
+          </label>
+          <button onClick={handleFormSubmit} className="button">
             SignUp
           </button>
-          <p className="signup-form-login-prompt">
-            Already have an account?<> </>
-            <Link to="/users/login">
-              <span
-                style={{
-                  color: "blue",
-                  textDecoration: "underline",
-                  cursor: "pointer",
-                }}
-              >
-                Log in
-              </span>
+          <p>
+            Already have an account? Then{" "}
+            <Link to="/users/login" className="link">
+              Login
             </Link>
           </p>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
